@@ -102,6 +102,7 @@ def callback_seed_indexer(context, message):
             for label in labels:
                 label.destroy()
 
+            data_pulled.clear()
             reset_counter += 1
             
             reset_counter_label.destroy()
@@ -185,6 +186,9 @@ def check_stop():
         
     return True
 
+# Start the listener thread
+lib.start_listener(log_folder_path.encode('utf-8'))
+time.sleep(1)
 
 ahk.add_hotkey('#n', callback=start_cycling)
 ahk.start_hotkeys()
@@ -195,10 +199,5 @@ callback_fn_ptr_tokenizer = ctypes.cast(callback_tokenizer, ctypes.c_void_p)
 
 lib.add_callback(4, 1, 1, 0, callback_fn_ptr_seed_indexer)
 lib.add_callback(1, 1, 1, 0, callback_fn_ptr_tokenizer)
-
-time.sleep(1)
-
-# Start the listener thread
-lib.start_listener(log_folder_path.encode('utf-8'))
 
 root.mainloop()
