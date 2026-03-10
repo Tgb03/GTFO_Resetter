@@ -11,8 +11,7 @@ from ahk import AHK
 import time
 import json
 
-MONITOR_SIZE_X = 2560
-MONITOR_SIZE_Y = 1440
+MOUSE_MENU_SENSITIVITY = 0.65
 
 from dll_setup import CALLBACK_TYPE, lib
 
@@ -133,9 +132,12 @@ def start_cycling():
     is_valid = True
     cycle_reset()
 
-# first pos: (0.176171875, 0.0416666667)
-# second pos: varies
-# third pos: (0.432421875, 0.667361111)
+# Rundown Button = 250, 25
+# SelectExpedition = 700, 600
+# A tier Center = 800, 275
+# E tier Center = 800, 675
+
+pos_x_1, pos_y_1 = 250, 25
 
 def cycle_reset():
     
@@ -145,18 +147,17 @@ def cycle_reset():
     
     start_watchdog()
     
-    pos_x_1, pos_y_1 = 0.176171875, 0.0416666667
     pos_x_2, pos_y_2 = level_info["screen_position"]["x"] - pos_x_1, level_info["screen_position"]["y"] - pos_y_1
-    pos_x_3, pos_y_3 = 0.25 - pos_x_2, 0.60 - pos_y_2
+    pos_x_3, pos_y_3 = 700 - pos_x_2 - pos_x_1, 600 - pos_y_2 - pos_y_1
     
     ahk.run_script(f"""
         BlockInput("MouseMove")
 
         positions := [
-            {{ x: -10000, y: -10000, pre: 300, click: 100, delay: 100 }},
-            {{ x: {pos_x_1 * MONITOR_SIZE_X}, y: {pos_y_1 * MONITOR_SIZE_Y}, pre: 300, click: 100, delay: 100 }},
-            {{ x: {pos_x_2 * MONITOR_SIZE_X}, y: {pos_y_2 * MONITOR_SIZE_Y}, pre: 300, click: 100, delay: 100 }},
-            {{ x: {pos_x_3 * MONITOR_SIZE_X}, y: {pos_y_3 * MONITOR_SIZE_Y}, pre: 300, click: 900, delay: 100 }}
+            {{ x: -10000, y: -10000, pre: 100, click: 100, delay: 100 }},
+            {{ x: {int(pos_x_1 / MOUSE_MENU_SENSITIVITY)}, y: {int(pos_y_1 / MOUSE_MENU_SENSITIVITY)}, pre: 300, click: 100, delay: 100 }},
+            {{ x: {int(pos_x_2 / MOUSE_MENU_SENSITIVITY)}, y: {int(pos_y_2 / MOUSE_MENU_SENSITIVITY)}, pre: 300, click: 100, delay: 100 }},
+            {{ x: {int(pos_x_3 / MOUSE_MENU_SENSITIVITY)}, y: {int(pos_y_3 / MOUSE_MENU_SENSITIVITY)}, pre: 300, click: 900, delay: 100 }}
         ]
 
         for index, pos in positions {{
