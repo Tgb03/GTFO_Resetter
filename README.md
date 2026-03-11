@@ -16,7 +16,8 @@ want examples, look at already existing levels.
 1. Install AutoHotKey 2.0 from https://www.autohotkey.com/download/
 2. Install Python & Pip
 3. Download as a zip or clone this project somewhere.
-4. Run `py -m pip install -r requirements.txt` in that folder
+4. Run `py -m pip install -r requirements.txt` in that folder.
+5. You may need to modify `setup.py` if your logs are in a different folder or autohotkey is installed somewhere else.
 
 ## Plugins
 
