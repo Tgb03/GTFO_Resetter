@@ -117,7 +117,7 @@ def callback_seed_indexer(context, message):
             
         if "ResourcePack" in data:
             name, dim, zone, id, size = data["ResourcePack"]
-            data_pulled.append({name, dim, zone, id})
+            data_pulled.append([name, dim, zone, id])
             
         if "GenerationOverflowHash" in data:
             b = bytes(data["GenerationOverflowHash"])
