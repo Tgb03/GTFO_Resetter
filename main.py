@@ -13,7 +13,7 @@ from script_loader import load_plugins, plugins
 from setup import ahk_executable_path, log_folder_path
 from dll_setup import CALLBACK_TYPE, lib
 from get_menu_sens import menu_sensitivity
-from plugins.helpers import data_pulled
+from plugins.helpers import data_pulled, marker_set
 
 with open("resources/level_positions.json", "r", encoding="utf-8") as f:
     level_positions = json.load(f)
@@ -96,6 +96,7 @@ def callback_seed_indexer(context, message):
                 label.destroy()
 
             data_pulled.clear()
+            marker_set = ""
             reset_counter += 1
             
             reset_counter_label.destroy()
@@ -113,6 +114,15 @@ def callback_seed_indexer(context, message):
             label = Label(frame, text=text)
             label.pack()
             labels.append(label)
+            
+        if "ResourcePack" in data:
+            name, dim, zone, id, size = data["ResourcePack"]
+            data_pulled.append({name, dim, zone, id})
+            
+        if "GenerationOverflowHash" in data:
+            b = bytes(data["GenerationOverflowHash"])
+            hex_string = b.hex()
+            marker_set = hex_string[-16:]
 
         if data == "GenerationEnd":
             if check_stop() is False and is_valid is True:

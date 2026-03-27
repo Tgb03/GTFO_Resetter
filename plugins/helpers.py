@@ -1,5 +1,9 @@
 
+from typing import Set
+
+
 data_pulled = []
+marker_set = ""
 
 # Check if any item with that name appears in the dimension, zone and one of those ids.
 def is_any_in_array(item_name: str, item_dimension: int, item_zone: int, array: list[int]) -> bool:
@@ -35,3 +39,6 @@ def is_in_zone(item_name: str, item_dimension: int, item_zone: int) -> bool:
             return True
             
     return False
+    
+def is_hash_in_map(map: Set[str]) -> bool:
+    return marker_set in map
