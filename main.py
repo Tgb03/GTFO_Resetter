@@ -85,7 +85,7 @@ def callback_tokenizer(context, message):
 def callback_seed_indexer(context, message):
     global reset_counter
     global reset_counter_label
-    global data_pulled, is_valid
+    global data_pulled, marker_set, is_valid
 
     if message:
         data = json.loads(message)
@@ -106,9 +106,10 @@ def callback_seed_indexer(context, message):
         if "Key" in data:
             name, dim, zone, id = data["Key"]
             text = f"{name} in ZONE_{zone} at {id}"
+            name = name.lower()
             data_pulled.append(data["Key"])
 
-            if name in ["ArtifactWorldspawn", "ArtifactContainer", "ConsumableWorldspawn", "ConsumableContainer"]:
+            if name in ["artifactworldspawn", "artifactcontainer", "consumableworldspawn", "consumablecontainer"]:
                 return
 
             label = Label(frame, text=text)
@@ -117,12 +118,12 @@ def callback_seed_indexer(context, message):
             
         if "ResourcePack" in data:
             name, dim, zone, id, size = data["ResourcePack"]
+            name = name.lower()
             data_pulled.append([name, dim, zone, id])
             
         if "GenerationOverflowHash" in data:
             b = bytes(data["GenerationOverflowHash"])
-            hex_string = b.hex()
-            marker_set = hex_string[-16:]
+            marker_set = b.hex()
 
         if data == "GenerationEnd":
             if check_stop() is False and is_valid is True:
