@@ -31,10 +31,10 @@ This function returns either True or False if this seed is good enough. You may 
 to make these. However in order to make it easier I provided the `helpers.py` which contain a few usable functions
 that should help with most levels. Please take a look in that file and read the comments before each function.
 
-Another thing to note is the names of the items are the exact same as in Logger and also shown on screen when you
-reset once through the UI. Consumables and artifacts are not shown however they are present too under
-`"ArtifactWorldspawn", "ArtifactContainer", "ConsumableWorldspawn", "ConsumableContainer"`. Resource packs are not 
-yet present.
+Another thing to note is the names of the items are lowercase but otherwise the exact same as in Logger and also
+shown on screen when you reset once through the UI. Consumables and artifacts are not shown however they are present
+too under `"ArtifactWorldspawn", "ArtifactContainer", "ConsumableWorldspawn", "ConsumableContainer"`. Resource packs 
+are not yet present.
 
 Once a plugin is setup the program will load it and run that function every time a seed is reset to check if it is
 good enough.
