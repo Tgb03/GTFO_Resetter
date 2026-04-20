@@ -107,7 +107,7 @@ def callback_seed_indexer(context, message):
             name, dim, zone, id = data["Key"]
             text = f"{name} in ZONE_{zone} at {id}"
             name = name.lower()
-            data_pulled.append(data["Key"])
+            data_pulled.append([name, dim, zone, id])
 
             if name in ["artifactworldspawn", "artifactcontainer", "consumableworldspawn", "consumablecontainer"]:
                 return
