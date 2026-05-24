@@ -27,4 +27,4 @@ def check():
     if not is_any_in_array("Cell", 0, 414, [0, 1, 2, 3, 4]):
         return False
         
-    return False
+    return True
