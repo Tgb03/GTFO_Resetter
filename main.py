@@ -117,7 +117,6 @@ def callback_seed_indexer(context, message):
             labels.append(label)
             
         if "ResourcePack" in data:
-            return
             name, dim, zone, id, size = data["ResourcePack"]
             name = name.lower()
             data_pulled.append([name, dim, zone, id])
