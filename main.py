@@ -107,11 +107,11 @@ def callback_seed_indexer(context, message):
             name, dim, zone, id = data["Key"]
             text = f"{name} in ZONE_{zone} at {id}"
             name = name.lower()
-            
-            if name in ["artifactworldspawn", "artifactcontainer", "consumableworldspawn", "consumablecontainer"]:
-                return
             data_pulled.append([name, dim, zone, id])
 
+            if name in ["artifactworldspawn", "artifactcontainer", "consumableworldspawn", "consumablecontainer"]:
+                return
+            
             label = Label(frame, text=text)
             label.pack()
             labels.append(label)
