@@ -1,5 +1,4 @@
-from plugins.helpers import is_any_in_array
-
+from plugins.helpers import is_any_in_array, is_hash_in_map
 
 def check():
     if not is_any_in_array("Ammopack", 0, 491, [
@@ -22,4 +21,8 @@ def check():
     ]):
         return False
         
-    return True
+    return is_hash_in_map({
+        "72f6e992bdc2367bc09726ac666d03b0c0b0e342fae4db119a8ac236fa7c238f", # one cell A
+        "8322efb80909976ee345620803d8a1f3a38ad53a89eab8c7b320bb167db9d5ff", # both cell A
+        "47d81649207b0f14dbadf2210942e368b1b33ce1a99fb468e52af70f18fa988b"  # goofy front cell A
+    })

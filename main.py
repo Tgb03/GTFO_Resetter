@@ -13,7 +13,7 @@ from script_loader import load_plugins, plugins
 from setup import ahk_executable_path, log_folder_path
 from dll_setup import CALLBACK_TYPE, lib
 from get_menu_sens import menu_sensitivity
-from plugins.helpers import data_pulled, marker_set
+import plugins.helpers as helpers
 
 with open("resources/level_positions.json", "r", encoding="utf-8") as f:
     level_positions = json.load(f)
@@ -85,7 +85,7 @@ def callback_tokenizer(context, message):
 def callback_seed_indexer(context, message):
     global reset_counter
     global reset_counter_label
-    global data_pulled, marker_set, is_valid
+    global is_valid
 
     if message:
         data = json.loads(message)
@@ -95,8 +95,8 @@ def callback_seed_indexer(context, message):
             for label in labels:
                 label.destroy()
 
-            data_pulled.clear()
-            marker_set = ""
+            helpers.data_pulled.clear()
+            helpers.marker_set = ""
             reset_counter += 1
             
             reset_counter_label.destroy()
@@ -107,7 +107,7 @@ def callback_seed_indexer(context, message):
             name, dim, zone, id = data["Key"]
             text = f"{name} in ZONE_{zone} at {id}"
             name = name.lower()
-            data_pulled.append([name, dim, zone, id])
+            helpers.data_pulled.append([name, dim, zone, id])
 
             if name in ["artifactworldspawn", "artifactcontainer", "consumableworldspawn", "consumablecontainer"]:
                 return
@@ -119,11 +119,12 @@ def callback_seed_indexer(context, message):
         if "ResourcePack" in data:
             name, dim, zone, id, size = data["ResourcePack"]
             name = name.lower()
-            data_pulled.append([name, dim, zone, id])
+            helpers.data_pulled.append([name, dim, zone, id])
             
         if "GenerationOverflowHash" in data:
             b = bytes(data["GenerationOverflowHash"])
-            marker_set = b.hex()
+            helpers.marker_set = b.hex()
+            print(helpers.marker_set)
 
         if data == "GenerationEnd":
             if check_stop() is False and is_valid is True:
