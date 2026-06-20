@@ -1,0 +1,9 @@
+
+from plugins.helpers import is_any_in_array
+
+
+def check():
+    if not is_any_in_array("BulkKey", 0, 36, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 21]):
+        return False
+    
+    return True
