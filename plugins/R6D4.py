@@ -1,5 +1,5 @@
 
-from plugins.helpers import data_pulled, is_any_in_array
+from plugins.helpers import is_any_in_array
 
 
 def check():
