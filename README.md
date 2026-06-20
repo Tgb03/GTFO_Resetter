@@ -33,18 +33,15 @@ that should help with most levels. Please take a look in that file and read the 
 
 Another thing to note is the names of the items are lowercase but otherwise the exact same as in Logger and also
 shown on screen when you reset once through the UI. Consumables and artifacts are not shown however they are present
-too under `"ArtifactWorldspawn", "ArtifactContainer", "ConsumableWorldspawn", "ConsumableContainer"`. Resource packs 
-are not yet present.
+too under `"ArtifactWorldspawn", "ArtifactContainer", "ConsumableWorldspawn", "ConsumableContainer"`. Resource packs use the names: `"Healthpack"`, `"Ammopack"`, `"ToolRefillpack"`, `"Disinfectpack"`. Uppercases or lowercases don't matter as everything is converted to lowercase anyway.
 
 Once a plugin is setup the program will load it and run that function every time a seed is reset to check if it is
 good enough.
 
 ## How to run it
 
-1. Check that the level you wish to run is set up in the `resources/level_positions.json`. If the level is not there
-   add it yourself and do trial and error until the program moves the cursor to the proper spot.
-2. Check that the level you wish to run has a script in the `plugins` folder. You may need to add a script. Look
+1. Check that the level you wish to run has a script in the `plugins` folder. You may need to add a script. Look
    for examples for other levels. Please re-read the section on plugins if you don't know how to.
-3. Run `py -m main`.
-4. Select the expedition you wish to reset. If you are already in it, you may need to reselect it.
-5. Press `windows+N`
+2. Run `py -m main`.
+3. Select the expedition you wish to reset. If you are already in it, you may need to reselect it.
+4. Press `windows+N`

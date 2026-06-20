@@ -26,6 +26,16 @@ def all_in_array(item_name: str, item_dimension: int, item_zone: int, array: lis
     
     return True
 
+def get_count_in_array(item_name: str, item_dimension: int, item_zone: int, array: list[int]) -> int:
+    item_name = item_name.lower()
+    count = 0
+
+    for name, dim, zone, id in data_pulled:
+        if item_name == name and item_dimension == dim and item_zone == zone and id in array:
+            count += 1
+
+    return count
+
 # Count the number of items with this name in the dimension, zone
 def count_in_zone(item_name: str, item_dimension: int, item_zone: int) -> int:
     item_name = item_name.lower()
